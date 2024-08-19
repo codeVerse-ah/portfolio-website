@@ -11,18 +11,45 @@ menuBar.addEventListener("click", () => {
 window.addEventListener("scroll", () => {
   navBar.classList.remove("active");
   menuBar.classList.remove("bx-x");
+  const heading = document.querySelector(".header");
+  if (scrollY > 40) {
+    heading.classList.add("active");
+  } else {
+    heading.classList.remove("active");
+  }
 });
 
+//scroll Top
+const scrollTop = document.querySelector(".scrollTop");
+window.addEventListener("scroll", () => {
+  if (scrollY > 150) {
+    scrollTop.classList.add("active");
+  } else {
+    scrollTop.classList.remove("active");
+  }
+});
 
+const sections = document.querySelectorAll("section");
+const item = document.querySelectorAll(".navbar-item a");
 
-
-
-
-
-
-
-
-
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach((e) => {
+    let sectionTop = e.offsetTop;
+    let sectionHeight = e.clientHeight;
+    let sectionTotal = sectionTop - sectionHeight / 4;
+    console.log(sectionTotal);
+    if (scrollY >= sectionTotal) {
+      current = e.getAttribute("id");
+    }
+  });
+  item.forEach((e) => {
+    e.classList.remove("active");
+    if (e.classList.contains(current)) {
+      e.classList.add("active");
+    }
+  });
+});
 
 //scrollreveal
 

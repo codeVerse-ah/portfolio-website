@@ -75,18 +75,17 @@ section {
 }
 
 .btn {
-  background: var(--main-color);
   margin-top: 2rem;
   display: inline-block;
   padding: 0.5rem 2.5rem;
   color: var(--white);
   font-size: 1.7rem;
   border-radius: 3rem;
-  border: 0.1rem solid var(--main-color);
+  border: 0.2rem solid var(--main-color);
   transition: var(--transition);
 }
 .btn:hover {
-  background: var(--black);
+  background: var(--main-color);
 }
 
 .heading {
@@ -127,8 +126,12 @@ section {
   left: 0;
   right: 0;
   z-index: 1000;
+  background: var(--bg-color);
+  padding: 2rem 0;
+  transition: var(--transition);
+}
+.header.active {
   background: var(--black);
-  box-shadow: var(--box-shadow);
   padding: 1.5rem 0;
 }
 .header .navbar {
@@ -142,29 +145,22 @@ section {
 }
 .header .navbar .navbar-item {
   margin-left: auto;
-  margin-right: 2rem;
 }
 .header .navbar .navbar-item a {
-  margin: 0 1rem;
+  margin-left: 1rem;
   font-size: 1.7rem;
   color: var(--white);
   transition: var(--transition);
   text-transform: capitalize;
   position: relative;
+  background: none;
 }
-.header .navbar .navbar-item a:after {
-  content: "";
-  position: absolute;
-  background: var(--main-color);
-  height: 0.3rem;
-  width: 0;
-  left: 0;
-  height: 0.3rem;
-  bottom: -7px;
-  transition: 0.3s;
+
+.header .navbar .navbar-item a.active {
+  color: var(--main-color);
 }
-.header .navbar .navbar-item a:hover:after {
-  width: 100%;
+.header .navbar .navbar-item a:hover {
+  color: var(--main-color);
 }
 .header .navbar .icon i {
   font-size: 3.5rem;
@@ -204,6 +200,9 @@ section {
   color: #fff;
   font-size: 4rem;
 }
+.home .home-container .content h1 span {
+  color: var(--main-color);
+}
 .home .home-container .content h2 {
   color: var(--main-color);
   font-size: 1.7rem;
@@ -218,9 +217,18 @@ section {
   text-align: center;
 }
 .home .home-container .image img {
-  /* width: 100%; */
   border-radius: 50%;
   border: 1rem solid var(--white);
+  animation: rotate 4s linear infinite;
+}
+@keyframes rotate {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4rem);
+  }
 }
 
 /*------------------
@@ -394,6 +402,7 @@ section {
 }
 .portfolio .heading::after {
   content: "My Work";
+  background: var(--black);
 }
 .portfolio .portfolio-container {
   display: grid;
@@ -451,7 +460,6 @@ section {
 
 .contact .heading::after {
   content: "Contact Me";
-  background: var(--black);
 }
 .contact .info {
   display: grid;
@@ -504,7 +512,7 @@ section {
   background: var(--black);
   border: none;
   margin-bottom: 1rem;
-  padding: 1.3rem 1rem;
+  padding: 1rem;
   border-radius: 3rem;
   color: var(--white);
   font-size: 1.6rem;
@@ -521,6 +529,11 @@ section {
 .contact .contact-conatainer form .btn {
   width: 100%;
   cursor: pointer;
+  padding: 1rem;
+  background: var(--black);
+}
+.contact .contact-conatainer form .btn:hover {
+  background: var(--main-color);
 }
 
 .contact .contact-conatainer .map {
@@ -565,6 +578,33 @@ section {
 }
 .footer .credit p span {
   color: var(--main-color);
+}
+
+/* ----------
+scrollTop ---------- */
+.scrollTop {
+  position: fixed;
+  right: 2rem;
+  bottom: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.scrollTop.active {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+.scrollTop i {
+  background: var(--main-color);
+  border-radius: 50%;
+  color: var(--white);
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 2.3rem;
 }
 
 /* ----------
@@ -626,6 +666,9 @@ responsive ---------- */
   }
   .skill .skill-container .content h2 {
     font-size: 3rem;
+  }
+  .scrollTop {
+    right: 0.1rem;
   }
 }
 
